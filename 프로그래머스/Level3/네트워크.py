@@ -9,7 +9,7 @@ def solution(n, computers):
             bfs(i, vis, n, computers)
             ans += 1
 
-    return ans + vis.count(False)
+    return ans
 
 
 def bfs(start_node, vis, n, computers):
