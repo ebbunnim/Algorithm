@@ -1,5 +1,4 @@
 from math import factorial
-from copy import deepcopy
 
 def solution(n, k):
     n_list = [i for i in range(1,n+1)]
