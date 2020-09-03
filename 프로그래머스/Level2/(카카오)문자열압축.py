@@ -11,9 +11,6 @@ def solution(s):
                 sub_cnt += 1
 
             else:
-                # 새롭게 윈도우를 잡는다.
-                if i + l >= len(s):
-                    break
                 window = s[i:i + l]
                 # sub_cnt = 10, 100, 1000 등 카운트 위해 len
                 if sub_cnt >= 2:
