@@ -1,5 +1,4 @@
 def solution(lines):
-
     def make_ms_sec(s): # ms 에 초점을 맞춤.
         s = s.split()
         during = s[2][:-1]
