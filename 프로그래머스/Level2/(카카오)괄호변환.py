@@ -26,9 +26,6 @@ def solution(p):
         v = x[i + 1:]
         return u, v
 
-    if correct(p):  # 빈 문자열도 얘가 처리
-        return p
-
     def solve(x):
         if x == '':
             return x
@@ -45,5 +42,8 @@ def solution(p):
                 else:
                     tmp += '('
             return tmp
+
+    if correct(p):  # 빈 문자열도 얘가 처리
+        return p
 
     return solve(p)
