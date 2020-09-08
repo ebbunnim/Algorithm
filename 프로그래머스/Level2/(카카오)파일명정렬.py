@@ -16,7 +16,6 @@ def solution(files):
             tail = x[j:]
         else:
             tail = ''
-        print(head, number, tail)
         return [head, number, tail]
 
     for i in range(len(files)):
