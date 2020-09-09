@@ -28,8 +28,6 @@ def solution(n, t, m, timetable):
             if len(T) < m:  # 탈 수 있다.
                 return maketime(end)
             else:
-                if T[0] > end:
-                    return maketime(end)
                 # 그게 아니라면 마지막 시간대를 찾아야
                 for _i in range(m):
                     if _i == m - 1:
