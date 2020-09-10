@@ -14,5 +14,4 @@ if __name__ == '__main__':
                 if D[j] > maxv:
                     maxv = D[j]
         D[i] = maxv+1
-    print(D)
     print(max(D))
