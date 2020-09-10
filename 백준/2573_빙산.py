@@ -36,7 +36,8 @@ if __name__ == '__main__':
         copy_arr = deepcopy(arr)
         for i in range(N):
             for j in range(M):
-                melt(i,j)
+                if arr[i][j]!=0:
+                    melt(i,j)
         arr = deepcopy(copy_arr)
 
         vis = [[False]*M for _ in range(N)]
