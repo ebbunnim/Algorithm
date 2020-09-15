@@ -1,6 +1,3 @@
-import sys
-sys.stdin = open('input.txt','r')
-
 if __name__ == '__main__':
     # 방향 : 동쪽, 남쪽, 대각선(동쪽방향)
     N = int(input())
@@ -18,7 +15,7 @@ if __name__ == '__main__':
         if arr[0][i] == 0:
             D[0][i][0] = D[0][i-1][0]
     for r in range(1,N):
-        for c in range(1,N):
+        for c in range(2,N):
             if arr[r][c] == 0:
                 D[r][c][0] = D[r][c - 1][0] + D[r][c - 1][2]
                 D[r][c][1] = D[r - 1][c][1] + D[r - 1][c][2]
