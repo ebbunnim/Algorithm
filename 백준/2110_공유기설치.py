@@ -16,7 +16,7 @@ if __name__ == '__main__':
             if N_list[i]-start >= target:
                 group += 1
                 start = N_list[i]
-        if group >= C: # 간격이 너무 컸다. 줄여야 한다.
+        if group >= C: # 간격이 너무 작았다. 간격을 키워야 한다.
             s = target+1
             ans = min(s,target)
         else:
