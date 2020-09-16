@@ -1,6 +1,7 @@
 import sys
 sys.stdin = open('input.txt','r')
 
+# lower bound + 최대값
 if __name__ == '__main__':
     N,C = map(int, input().split())
     N_list = [int(input()) for _ in range(N)]
@@ -15,7 +16,7 @@ if __name__ == '__main__':
             if N_list[i]-start >= target:
                 group += 1
                 start = N_list[i]
-        if group >= C: # 간격이 너무 작았다. 간격을 키워야 한다.
+        if group >= C: # 간격이 너무 작았다. 간격을 키워야 한다. 더 큰 값을 수용하게 된다.
             s = target+1
             ans = target # ans는 더 커진 값이 담기게 된다.
         else:
