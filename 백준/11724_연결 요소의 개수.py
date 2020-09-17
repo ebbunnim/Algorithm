@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('input.txt','r')
 
-
+# 일부러 union-find로 구현
 if __name__ == '__main__':
     N,M = map(int, input().split())
     parent = [0]*(1+N)
@@ -28,7 +28,6 @@ if __name__ == '__main__':
             union_parent(a, b)
     parent.pop(0)
     print(len(set(parent)))
-
 
 
 
