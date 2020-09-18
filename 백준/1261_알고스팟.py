@@ -7,7 +7,6 @@ if __name__ == '__main__':
     M, N = map(int, input().split()) # 가로, 세로
     arr = [list(map(int,input())) for _ in range(N)]
     INF = int(1e9)
-    graph = [[] for _ in range(max(M,N))]
     distance = [[INF]*M for _ in range(N)]
     distance[0][0] = 0
     heap = []
