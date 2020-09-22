@@ -11,4 +11,5 @@ if __name__ == '__main__':
             if ports[j] < ports[i]:
                 res = max(res, D[j]+1)
         D[i] = res
+    print(D[:N+1])
     print(max(D[:N+1]))
