@@ -12,16 +12,14 @@ class Solution:
         # start
         heap = []
         heapq.heappush(heap, (0, src, 0))
-        ans = -1
 
         # exec
         while heap:
             cost, curr, dep = heapq.heappop(heap)
             if curr == dst:
-                ans = cost
-                break  # 힙큐를 써서 이미 최단거리 확보했기 때문에 k제약 만족한 최단거리
+                return cost  # 힙큐를 써서 이미 최단거리 확보했기 때문에 k제약 만족한 최단거리
 
             if dep <= K:
                 for nxt in graph[curr]:
                     heapq.heappush(heap, (cost + nxt[0], nxt[1], dep + 1))
-        return ans
+        return -1
