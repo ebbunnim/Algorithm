@@ -13,12 +13,12 @@ if __name__ == '__main__':
     S = int(input())
     s,e = 0, S
     ans = 0
-    while s<=e: # 어디있는지 모름. 다만, =일순 없다.
-        cnt = (s+e)//2 # 개
+    while s<=e:
+        cnt = (s+e)//2
         target = ((cnt+1)*cnt)//2
         if target <= S:
             s = cnt+1
-            ans = cnt
         else:
             e = cnt-1
+            ans = e
     print(ans)
