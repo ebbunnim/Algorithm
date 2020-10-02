@@ -5,7 +5,6 @@ sys.stdin = open('/Users/sinjiyoung/PycharmProjects/algorithms_git/algorithm/백
 
 if __name__ == '__main__':
     N =int(input())
-    psum=0
     ans=0
 
     def binary_search(t,target): #target이 있는지 없는지만 확인하는 함
