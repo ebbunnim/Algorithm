@@ -30,7 +30,7 @@ if __name__ == '__main__':
         idx = 0
         ans = []
         for s in range(1,11): # 만들 숫자의 자리수. 1000000번째 물으면 몇번째 자리까지 가야하는지? 찍어봐 (주의)
-            for start in range(s-1,10): # s-1~10까지가 만들 숫자의 맨 앞자리 숫자
+            for start in range(s-1,10): # s-1~9까지가 만들 숫자의 맨 앞자리 숫자
                 res = []
                 res.append(start)
                 if s == 1:
