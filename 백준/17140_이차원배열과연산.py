@@ -15,6 +15,9 @@ if __name__ == '__main__':
     def calculate():
         global t, R, C, arr
         t += 1
+        if t > 100:
+            return -1
+
         if C>R: # C연산
             tmp_map =[]
             arr = list(map(list,zip(*arr)))
@@ -29,18 +32,11 @@ if __name__ == '__main__':
                     tmp.append(_t[1])
                 row_len = len(tmp)
                 R = max(R, row_len)
-                tmp_map.append(tmp[:100])  ## ?????
+                tmp_map.append(tmp[:100])
             for tmp in tmp_map:
-                diff = R-len(tmp)
-                if diff>0:   # 0을 어떻게 붙여야 하지? 그냥, 다음번 순회에서 사용한다고 그럴까? oo 그때 붙여도 될 듯
-                    for _ in range(diff):
-                        tmp+=[0]
+                for _ in range(R-len(tmp)):
+                    tmp+=[0]
             tmp_map = list(map(list, zip(*tmp_map)))
-            # k 확인
-            if 0<=r<R and 0<=c<C and tmp_map[r][c]==k:
-                return t
-            arr = deepcopy(tmp_map)
-
         else: # R연산
             tmp_map = []
             for row in arr:
@@ -54,18 +50,17 @@ if __name__ == '__main__':
                     tmp.append(_t[1])
                 col_len = len(tmp)
                 C = max(C,col_len)
-                tmp_map.append(tmp[:100]) ## ?????
+                tmp_map.append(tmp[:100])
             for tmp in tmp_map:
-                diff = C-len(tmp)
-                if diff>0:   #
-                    for _ in range(diff):
-                        tmp+=[0]
-            # k 확인
-            if 0<=r<R and 0<=c<C and tmp_map[r][c]==k:
-                return t
-            arr = deepcopy(tmp_map) # 꼭 deepcopy?
-        if t > 100:
-            return -1
+                for _ in range(C-len(tmp)):
+                    tmp+=[0]
+
+        # k 확인 & arr <- tmp_map
+        if 0<=r<R and 0<=c<C and tmp_map[r][c]==k:
+            return t
+        arr = deepcopy(tmp_map)
+
+
     if 0<=r<R and 0<=c<C and arr[r][c]==k:
         print(0)
     else:
