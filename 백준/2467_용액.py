@@ -21,8 +21,6 @@ if __name__ == '__main__':
         else:
             s += 1
 
-        if s==N or e==N:
-            break
     print(Nlist[ans[0]],Nlist[ans[1]])
 
 
