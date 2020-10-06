@@ -4,7 +4,6 @@ sys.stdin = open('/Users/sinjiyoung/PycharmProjects/algorithms_git/algorithm/백
 if __name__ == '__main__':
     N = int(input())
     Nlist = list(map(int,input().split()))
-    Nlist.sort()
 
     # s, e : s -> e <- 값이 작아지면 계속 갱신, ans에도
     # e만 쭉오면서 갱신하다가.
