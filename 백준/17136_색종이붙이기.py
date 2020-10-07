@@ -25,6 +25,7 @@ if __name__ == '__main__':
     def dfs(cnt):
         global minv
 
+        # prunning
         if cnt > minv:
             return
 
@@ -37,7 +38,8 @@ if __name__ == '__main__':
                     break
             if F==1:
                 break
-        # 끝점 닿기 전에 start point가 없다면,
+
+        # start point가 더 이상 없다면 리턴
         if F==0:
             if cnt < minv:
                 minv = cnt
@@ -50,12 +52,6 @@ if __name__ == '__main__':
                 dfs(cnt+1)
                 update_paper(r,c,size,1)
                 papers[size]+=1
-
-        # arr 끝점까지 닿은 경우
-        if sum(sum(subarr) for subarr in arr) == 0:
-            if cnt < minv:
-                minv = sum(sum(subarr) for subarr in arr)
-                return
 
     dfs(0)
 
