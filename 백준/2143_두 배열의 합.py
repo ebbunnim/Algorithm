@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('/Users/sinjiyoung/PycharmProjects/algorithms_git/algorithm/백준/input.txt','r')
+sys.stdin = open('input.txt','r')
 
 from collections import defaultdict
 # 정수. 반드시 a,b로 구성해야 한다.

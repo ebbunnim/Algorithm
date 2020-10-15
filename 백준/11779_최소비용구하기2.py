@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('/Users/sinjiyoung/PycharmProjects/algorithms_git/algorithm/백준/input.txt','r')
+sys.stdin = open('input.txt','r')
 
 import heapq
 

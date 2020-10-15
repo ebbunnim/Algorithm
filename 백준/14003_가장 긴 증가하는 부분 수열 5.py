@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('/Users/sinjiyoung/PycharmProjects/algorithms_git/algorithm/백준/input.txt','r')
+sys.stdin = open('input.txt','r')
 
 # 1 5 10 4 에서 1 4 10 은 오답이다. 최장 수열 구성요소를 묻는다면 tracing 과정이 추가되어야 한다(like union-find)
 if __name__ == '__main__':

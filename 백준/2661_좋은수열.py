@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('/Users/sinjiyoung/PycharmProjects/algorithms_git/algorithm/백준/input.txt','r')
+sys.stdin = open('input.txt','r')
 
 #  1, 2, 3으로만 이루어져 있는 길이가 N인 좋은 수열들 중에서 가장 작은 수를 나타내는 수열
 # 좋은 수열 : 인접하게 같은 수이면 안됨, 1 1 은 물론 12 12 도

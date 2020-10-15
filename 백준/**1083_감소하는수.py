@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('/Users/sinjiyoung/PycharmProjects/algorithms_git/algorithm/백준/input.txt','r')
+sys.stdin = open('input.txt','r')
 
 # n으로 몇번째 군의 몇번째? 이걸 판단하느냐 vs 다 만들어놓고 n을 찝어서 반환하느냐. 여기선 후자를 선택
 
