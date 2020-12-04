@@ -1,6 +1,5 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        # 한 시점에서는 바로 샀음을 가정. 모두 공개된 정보라고 가정했으므로 
         maxv = 0
         minv = 1e9
         for i in range(len(prices)):
@@ -12,5 +11,5 @@ class Solution:
                 maxv=max(maxv,prices[i]-minv)
         return maxv       
         
-        
-        
+        # 현재 시점에서의 최소값을 갱신
+        # 최소값보다 크다면, 바로 바로 차익을 실현해서 최대값 교체 
