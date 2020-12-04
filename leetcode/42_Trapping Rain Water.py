@@ -11,6 +11,6 @@ class Solution:
                     break
                 # 연산
                 t = i-stack[-1]-1
-                ans += (min(height[i],height[stack[-1]])-height[top])*t #더 작은 높이의 기둥으로 trap(w)
+                ans += (min(height[i],height[stack[-1]])-height[top])*t # 더 작은 높이의 기둥으로 trap
             stack.append(i)
         return ans
