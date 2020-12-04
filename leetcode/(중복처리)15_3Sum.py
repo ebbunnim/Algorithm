@@ -4,7 +4,7 @@ class Solution:
         n = len(nums)
         ans=[]
         for i in range(n-2):
-            if i>0 and nums[i]==nums[i-1]:
+            if i>0 and nums[i]==nums[i-1]: # 중복처리1
                 continue
             
             l, r = i+1, n-1
@@ -18,6 +18,7 @@ class Solution:
                     ans+=[[nums[i],nums[l],nums[r]]]
                     l+=1
                     r-=1
+                    # 중복처리2
                     while l<r and nums[l]==nums[l-1]:
                         l+=1
                     while l<r and nums[r]==nums[r+1]:
