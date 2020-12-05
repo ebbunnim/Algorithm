@@ -3,11 +3,10 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-# val은 data. root, root.next 는 현재 주소와 다음 주소임.
 
 class Solution:
     def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
-        dummy = ListNode() # head가 가리키는 첫번째 노드로 dummpy 노드를 가리키게 함. 새 노드 추가할 때 첫번째 노드 판별 필요 없음
+        dummy = ListNode() # head가 가리키는 첫번째 노드로 dummy 노드를 가리키게 함. 새 노드 추가할 때 첫번째 노드 판별 필요 없음
         head = dummy
         while l1 and l2:
             newnode = ListNode()
