@@ -20,7 +20,7 @@ class Solution:
             
             for i in range(starti,len(digits)):
                 for j in dials[digits[i]]:
-                    dfs(i+1, path+j,ans)
+                    dfs(i+1, path+j,ans) #문자열이 불변객체여서 stack과 달리 root가 바뀌지 않는 듯
                     
         dfs(0,'',ans)
         return ans
