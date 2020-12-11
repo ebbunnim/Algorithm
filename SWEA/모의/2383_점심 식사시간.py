@@ -3,7 +3,7 @@ sys.stdin = open('input.txt','r')
 
 from collections import deque
 
-def make_waitings(group, step):
+def scheduling(group, step):
     waitings = []
     for p in group:
         waitings += [abs(p[0] - step[0]) + abs(p[1] - step[1]) + 1]
@@ -13,7 +13,6 @@ def make_waitings(group, step):
     working = deque()
     # 가장 빠른 애부터 넣어줄거야.
     # 처음에는 가장 3개를 꺼내. 그리고 만약에 대기에 있는애 시간이 마지막 시간 이전이라면 그떄동안 기다려
-
 
     if len(group)<=3:
         if len(group)==0:
@@ -29,8 +28,6 @@ def make_waitings(group, step):
                 break
             if waitings:
                 working.append(max(time,waitings.pop())+have_to_down) # 작업이 끝내는 시간을 넣어둠. 근데 기다리면 본래의 시간이 아니라 time 기준
-                #print('working',working)
-
             else:
                 break
 
@@ -51,10 +48,10 @@ def dfs(start,x,group1):
         group2 = [p for p in people if p not in group1]
 
         # first
-        val1=max(0,make_waitings(group1, steps[0]),make_waitings(group2, steps[1])) # 2 계단으로 나누되 더 늦은 시간이 최종 걸린 시간
+        val1=max(0,scheduling(group1, steps[0]),scheduling(group2, steps[1])) # 2 계단으로 나누되 더 늦은 시간이 최종 걸린 시간
 
         # second -> 계단 다르게 배치
-        val2=max(0,make_waitings(group1, steps[1]),make_waitings(group2, steps[0]))
+        val2=max(0,scheduling(group1, steps[1]),scheduling(group2, steps[0]))
 
         # 그 중 어떤게 더 소요시간이 작냐
         minv = min(minv,min(val1,val2))
@@ -66,9 +63,6 @@ def dfs(start,x,group1):
         dfs(i+1,x-1,group1)
         group1.pop()
 
-    return
-
-def down():
     return
 
 
@@ -89,9 +83,6 @@ if __name__=="__main__":
         minv=1e9
         for x in range(len(people)//2+1):
             dfs(0,x,[]) # [], []으로 두 그룹으로 나뉘어지게 됨. 이 두 그룹을 step1, step2 둘다 커버하도록 만들어야 함.
-            # 거리계산해서 대기줄로 세우기
-            # 대기줄인 애들 시간 연산하기
-            # down()
 
         print(f'#{t+1} {minv}')
 
