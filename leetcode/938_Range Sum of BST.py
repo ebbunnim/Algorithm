@@ -5,15 +5,20 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
     ans = 0
 
     def rangeSumBST(self, root: TreeNode, low: int, high: int) -> int:
+        # pruning
         if not root:
             return
-        if low <= root.val <= high:
-            self.ans += root.val
+        if root.val > high:
+            return self.rangeSumBST(root.left, low, high)
+        if root.val < low:
+            return self.rangeSumBST(root.right, low, high)
+
+        self.ans += root.val
         self.rangeSumBST(root.left, low, high)
         self.rangeSumBST(root.right, low, high)
         return self.ans
-
