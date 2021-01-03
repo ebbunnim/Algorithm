@@ -23,3 +23,5 @@ if __name__ == '__main__':
         print(ans)
     else:
         print("use the stairs")
+
+# dfs 사용하면 안되는 이유 : 이전에 방문했던 좌표를 다시 탐색해야 하는데, 이럴 경우 시간 복잡도가 지수 형태가 됨
