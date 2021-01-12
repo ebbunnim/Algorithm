@@ -30,3 +30,4 @@ if __name__ == '__main__':
 
     ans = check(cnt, status)
     print(ans if ans != 1e9 else -1)
+
