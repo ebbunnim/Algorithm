@@ -35,6 +35,8 @@ if __name__ == '__main__':
             for nxt in child[curr]:
                 off += dfs(nxt, False)
         DP[prev][curr] = min(on, off)
+        print('on',on)
+        print(DP[prev][curr])
         return DP[prev][curr]
 
 
