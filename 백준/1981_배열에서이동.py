@@ -3,31 +3,37 @@ sys.stdin = open('input.txt','r')
 from collections import deque
 input=sys.stdin.readline
 
-def bfs(target):
-    Q=deque([(0,0,arr[0][0],arr[0][0])]) # r,c,minv,maxv
+def bfs(s,e):
+    if arr[0][0]<s or arr[0][0]>e:
+        return
+
+    Q=deque([(0,0)]) # r,c
     vis=[[False]*N for _ in range(N)]
     vis[0][0]=True
-    res=200
     while Q:
-        r,c,minv,maxv=Q.popleft()
+        r,c=Q.popleft()
         if r==(N-1) and c==(N-1):
-            print(minv, maxv)
-            res=min(res,maxv-minv)
+            return True
         for i in range(4):
             nr,nc=r+dr[i],c+dc[i]
             if 0<=nr<N and 0<=nc<N and not vis[nr][nc]:
-                nminv=min(minv,arr[nr][nc])
-                nmaxv=max(maxv,arr[nr][nc])
-                if (nmaxv-nminv)<=target:
+                if s<=arr[nr][nc]<=e:
                     vis[nr][nc] = True
-                    Q.append((nr,nc,nminv,nmaxv))
-    return res
+                    Q.append((nr,nc))
+    return False
+
+def ispath(mid):
+    for i in range(200):
+        if (i+mid)<=200:
+            if bfs(i,i+mid):
+                return True
+    return False
 
 def bs():
     s,e=0,200
     while s<e:
-        mid=(s+e)//2
-        if bfs(mid)<=mid:
+        mid=(s+e)//2 # 최대-최소
+        if ispath(mid):
             e=mid
         else:
             s=mid+1
