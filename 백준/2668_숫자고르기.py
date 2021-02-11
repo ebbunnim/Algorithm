@@ -10,7 +10,7 @@ def dfs(curr,stack):
             return
     elif vis[nxt] and (nxt in stack):
         while stack:
-            x=stack.pop()   # 있는 것들 cycle 다 하는 것
+            x=stack.pop()   
             cycle[x]=True
             if x==nxt:
                 break
