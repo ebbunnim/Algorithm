@@ -1,6 +1,6 @@
 import sys
-sys.stdin = open('input.txt','r')
 from collections import deque
+sys.stdin = open('input.txt','r')
 input=sys.stdin.readline
 
 def bfs(s,e):
