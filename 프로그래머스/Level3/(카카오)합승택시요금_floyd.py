@@ -13,7 +13,7 @@ def solution(n, s, a, b, fares):
     for k in range(n):
         for i in range(n):
             for j in range(n):
-                if dist[i][j] > dist[i][k] + dist[k][j]: # min으 계속 재할당하면 시간초과 났었음
+                if dist[i][j] > dist[i][k] + dist[k][j]: # min으로 계속 재할당하면 시간초과 났었음
                     dist[i][j] = dist[i][k] + dist[k][j]
 
     ans = INF
