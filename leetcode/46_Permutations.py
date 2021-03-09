@@ -8,8 +8,7 @@ class Solution:
         def dfs(stack,ans):
             if len(stack)==len(nums):
                 ans+=[tuple(stack)]
-                return 
-            
+                return
             for i in range(len(nums)):
                 if vis[i]==False:
                     stack.append(nums[i])
