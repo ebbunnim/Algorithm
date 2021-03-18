@@ -14,7 +14,7 @@ def validate(x,y):
 
 if __name__ == '__main__':
     T=int(input())
-    dx=[-1,0,1,0] # R은,
+    dx=[-1,0,1,0]
     dy=[0,1,0,-1]
     for _ in range(T):
         x, y, d = 0, 0, 0
