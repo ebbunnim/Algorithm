@@ -1,12 +1,9 @@
-9 8
-........
-.xxxx...
-.x......
-.x.xxxx.
-.x....x.
-.x....x.
-.xxxx.x.
-....xxx.
-......x.
-1
-2
+8 17
+...XXXXXX..XX.XXX
+....XXXXXXXXX.XXX
+...XXXXXXXXXXXX..
+..XXXXX.LXXXXXX..
+.XXXXXX..XXXXXX..
+XXXXXXX...XXXX...
+..XXXXX...XXX....
+....XXXXX.XXXL...
