@@ -1,19 +1,25 @@
 import sys
 sys.stdin = open('input.txt','r')
 input=sys.stdin.readline
-from itertools import permutations
-
-def rotate(arr): # 시계방향
-    res=[0]*4
-    for j in range(4):
-        tmp=[]
-        for i in range(3,-1,-1):
-            tmp+=[arr[i][j]]
-        res[j]=tmp
-    return res
 
 def calc(): # 효능과 색 모두 하기
     return
+
+def rotate(arr): #시계방향 턴 
+    res=[]
+    for j in range(4):
+        tmp=[]
+        for i in range(4):
+            tmp+=[arr[i][j]]
+        res.append(tmp[::-1])
+
+def rotate2(arr): #반시계방향 턴
+    res=[0]*4
+    for j in range(4):
+        tmp=[]
+        for i in range(4):
+            tmp+=[arr[i][j]]
+        res[3-j]=tmp
 
 
 if __name__ == '__main__':
@@ -29,7 +35,7 @@ if __name__ == '__main__':
         ingredients.append(arr)
     # print(*ingredients[0],sep='\n')
 
-    rotate_reverse(ingredients[0])
+    rotate2(ingredients[0])
 
 # 1. 순열 (재료 선택 - 배치에 뭐가 왔느냐에 따라서 달라지므로 )
 # 1-2. 순열의 한 케이스마다 재료들을 돌려봐야(재료마다 4번의 로테이트가 가능하다)
