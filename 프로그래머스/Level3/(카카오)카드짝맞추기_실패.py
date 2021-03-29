@@ -2,57 +2,101 @@ from itertools import permutations
 from collections import defaultdict, deque
 from copy import deepcopy
 
-
 def solution(board, r, c):
-    answer = 0
-    dr = [-1, 0, 1, 0]
-    dc = [0, 1, 0, -1]
+    minv = 17
+    dr, dc = [-1, 0, 1, 0], [0, 1, 0, -1]
+    kinds = set()
     friends = defaultdict(list)
-    ancestor_board = deepcopy(board)
     for i in range(4):
         for j in range(4):
             if board[i][j]:
+                kinds.add(board[i][j])
                 friends[board[i][j]] += [(i, j)]
-    permu = list(permutations(friends.keys(), 3))
+    n = len(kinds)
+    permu = list(permutations(kinds, n))
+    comb_vis=[False]*n
+    res=[]
 
-    def bfs(r, c, friend, d):  # 현재 커서 -> 원소 -> 대응 원소 이때 최단 거리에 두번을 써야 한다.
-        # board를 돌면서 friend 색이 같은 애를 찾는다.
-        Q = deque([(r, c, 0, -1)])
-        vis = [[False] * 4 for _ in range(4)]
-        vis[r][c] = True
+    def comb(s,n,cnt):
+        res.append(tuple(comb_vis))
+        if cnt==n:
+            return
+        for i in range(s,n):
+            if comb_vis[i]==False:
+                comb_vis[i]=True
+                comb(i,n,cnt+1)
+                comb_vis[i]=False
+        return
+
+    def can_go(r, c, vis):
+        return 0 <= r < 4 and 0 <= c < 4 and not vis[r][c]
+
+    def move(r, c, d):
+        while True:
+            nr, nc = r + dr[d], c + dc[d]
+            if 0 <= nr < 4 and 0 <= nc < 4:
+                if copy_board[nr][nc]:
+                    return nr, nc
+                else:
+                    r, c = nr, nc
+            else:
+                return r, c
+
+    def bfs(r, c, tr, tc):  # 현재 위치, 타겟 위치
+        Q = deque([(r, c, 0)])  # lv -> move에서는 lv의 의미가 확장됨
+        vis = [[False] * 4 for _ in range(4)] # vis가 현재 위치야? - 중복으로 갈 수 있지
+        vis[r][c]=True
         while Q:
-            r, c, lv, d = Q.popleft()
-            for nd in range(4):
-                nr, nc = r + dr[nd], c + dc[nd]
-                if 0 <= nr < 4 and 0 <= nc < 4 and not vis[nr][nc]:
-                    if board[nr][nc]:
-                        if (nr, nc) == friend:  # 색이랑 똑같다고 한다면,
-                            board[nr][nc] = 0
-                            return nr, nc, lv  # 반드시 찾게 되어있다.
-                        else:  # 색이 같지 않다,
-                            if d == nd:
-                                vis[nr][nc] = True
-                                Q.append((nr, nc, lv, nd))
-                            else:
-                                vis[nr][nc] = True
-                                Q.append((nr, nc, lv + 1, nd))
-                    else:  # lv은 건드리지 않는다.
-                        vis[nr][nc] = True
-                        Q.append((nr, nc, lv, nd))
-        return -1, -1, -1
+            r, c, lv = Q.popleft()
+            if r == tr and c == tc:
+                return r, c, lv  # 이동 후 위치, 이동한 거리
+            # +1씩 사방향
+            for d in range(4):
+                nr, nc = r + dr[d], c + dc[d]
+                if can_go(nr, nc, vis):
+                    vis[nr][nc] = True
+                    Q.append((nr, nc, lv + 1))
+            # ctrl로 사방향
+            for d in range(4):
+                nr, nc = move(r, c, d)
+                if can_go(nr, nc, vis):
+                    vis[nr][nc] = True
+                    Q.append((nr, nc, lv + 1))
 
-    minv = 17
-    for i in range(len(permu)):
-        for j in range(2):
+    comb(0,n,0)
+
+    for p in permu:
+        for i in range(len(res)): # friends[p[i]][res[i]]
+            copy_board = deepcopy(board)
+            copy_r, copy_c = r, c
             cnt = 0
-            board = deepcopy(ancestor_board)
-            nr, nc = r, c  # start는 보존
-            for friend in permu[i]:
-                nr, nc, lv = bfs(nr, nc, friends[friend][j], -1)  # 현재 커서 -> target
+            for j in range(n):
+                # exec
+                friend,flag=p[j],res[i][j]
+                tr, tc = friends[friend][flag][0], friends[friend][flag][1]
+                copy_r, copy_c, lv = bfs(copy_r, copy_c, tr, tc)  # curr -> target
                 cnt += lv
-                nr, nc, lv = bfs(nr, nc, friends[friend][not j], -1)  # target -> counter target
-                cnt += (lv + 2)  # enter 횟수 추가
-            if cnt < minv:
-                minv = cnt
+                copy_board[tr][tc] = 0
+                # same exec
+                tr, tc = friends[friend][not flag][0], friends[friend][not flag][1]
+                copy_r, copy_c, lv = bfs(copy_r, copy_c, tr, tc)  # target -> counter_target
+                cnt += (lv + 2)
+                copy_board[tr][tc] = 0
+                if cnt>minv:
+                    break
+            minv = min(minv, cnt)
+    # ans을 어떻게 카운트할지만 생각하면 됨!
     return minv
 
+
+# board=[[1,0,0,3],[2,0,0,0],[0,0,0,2],[3,0,1,0]]
+board=[[3,0,0,2],[0,0,1,0],[0,1,0,0],[2,0,0,3]]
+# r,c=1,0
+r,c=0,1
+
+print(solution(board, r, c))
+
+# 입력
+# 출력
+# 전처리
+# 순차적 - 함수화 / 알고리즘
