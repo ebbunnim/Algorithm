@@ -7,5 +7,5 @@ def solution(n):
         else:
             return T[r]+convert(q,base) # 뒤에다가 붙임
     res=convert(n,3)
-    return int(str(res),3)
+    return int(res,3)
 
