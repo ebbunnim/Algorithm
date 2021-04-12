@@ -16,7 +16,7 @@ def bs():
             else: #  크다면 구간을 하나 늘린다.
                 group+=1
                 minv,maxv=Nlist[e],Nlist[e]
-        if group<=M:
+        if group<=M: # lower bound
             r=mid
         else:
             l=mid+1
