@@ -1,6 +1,6 @@
 import sys
-sys.stdin = open('input.txt','r')
 from collections import deque
+sys.stdin = open('input.txt','r')
 input=sys.stdin.readline
 
 def spring_and_summer():
@@ -32,13 +32,20 @@ def autumn_and_winter():
 if __name__ == '__main__':
     N,M,K=map(int,input().split())
     A=[list(map(int,input().split())) for _ in range(N)]
-    arr=[[deque() for _ in range(N)] for _ in range(N)]
+    arr=[[list() for _ in range(N)] for _ in range(N)]
     rich=[[5]*N for _ in range(N)]
     dr=[-1,-1,-1,0,0,1,1,1]
     dc=[-1,0,1,-1,1,-1,0,1]
     for _ in range(M):
         x,y,old=map(int,input().split())
         arr[x-1][y-1].append(old) # 나이
+
+    # 없어도 PASS하지만, 문제 요구사항에 입력 들어오는 순서에 대한 명시가 없어서 삽입
+    for r in range(N):
+        for c in range(N):
+            if arr[r][c]!=[]:
+                arr[r][c].sort(reverse=True)
+            arr[r][c]=deque(arr[r][c])
 
     for _ in range(K):
         spring_and_summer()
