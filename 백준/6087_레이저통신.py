@@ -4,9 +4,9 @@ sys.stdin = open('input.txt','r')
 input=sys.stdin.readline
 
 def bfs():
-    Q=deque([( dst[0][0],dst[0][1],0,0),(dst[0][0],dst[0][1],1,0),(dst[0][0],dst[0][1],2,0),(dst[0][0],dst[0][1],3,0)]) # r,c,d,lv
+    Q=deque([(sr,sc,0,0),(sr,sc,1,0),(sr,sc,2,0),(sr,sc,3,0)]) # r,c,d,lv
     vis=[[INF]*W for _ in range(H)]
-    vis[dst[0][0]][dst[0][1]] = 0
+    vis[sr][sc] = 0
     while Q:
         r,c,prev_d,lv=Q.popleft()
         for d in range(4):
@@ -23,7 +23,7 @@ def bfs():
                 if lv+1<=vis[nr][nc]:
                     vis[nr][nc]=lv+1
                     Q.append((nr,nc,d,lv+1))
-    return vis[dst[1][0]][dst[1][1]]
+    return vis[tr][tc]
 
 if __name__ == '__main__':
     ans=sys.maxsize
@@ -37,4 +37,6 @@ if __name__ == '__main__':
         for j in range(W):
             if arr[i][j]=='C':
                 dst+=[(i,j)]
+    sr,sc=dst[0]
+    tr,tc=dst[1]
     print(bfs())
