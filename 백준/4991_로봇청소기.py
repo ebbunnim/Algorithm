@@ -20,6 +20,8 @@ def bfs(sr,sc,tr,tc):
 
 def dfs(curr,cnt,acc):
     global ans
+    if acc>=ans:
+        return
     if cnt==n:
         ans=min(ans,acc)
         return
