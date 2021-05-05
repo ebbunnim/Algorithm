@@ -33,7 +33,6 @@ if __name__=="__main__":
             A,B=map(int,input().split())
             parent[B]=A
             graph[A]+=[B]
-            graph[B]+=[A] # 양방향 그래프로 만들어서 lv 처리해야
         n1,n2=map(int,input().split())
         root=parent[1:].index(0)+1
         vis[root]=True
