@@ -1,0 +1,35 @@
+// edge case : s=="words and 987" || s==".1" || s=="+-12" ....
+// Read Note carefully!!!!! 
+class Solution {
+public:
+    int myAtoi(string s) {
+        long ans = 0; // set long (cover overflow case)
+        bool isPositive = true; 
+        bool existDigit = false;
+        
+        int idx=0;
+        while (s[idx]==' ') { // ignore only 'leading' whitespace
+            idx++;
+        }
+
+        for (idx; idx<s.size(); idx++) { 
+            if (s[idx] == '-' || s[idx]=='+') { 
+                if (existDigit) break;
+                if (idx+1>s.size()) break;
+                if (!isdigit(s[idx+1])) break; // invalid
+                if (isdigit(s[idx+1])) {
+                    if (s[idx]=='-') 
+                        isPositive = false;
+                } 
+            } else if (s[idx] == ' ' || !isdigit(s[idx])) {
+                break;
+            } else { // digit
+                ans = (ans*10) + (s[idx]-'0');
+                if (ans > INT_MAX) 
+                    return isPositive ? INT_MAX : INT_MIN; 
+                existDigit = true;
+            }
+        }
+        return isPositive? ans : -ans; ;
+    }
+};
