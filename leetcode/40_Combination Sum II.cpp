@@ -1,19 +1,18 @@
 class Solution {
 public:
     vector<int> partial;
-    set<vector<int>> setAns;
+    vector<vector<int>> ans;
 
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         sort(candidates.begin(), candidates.end());
         backTracking(0,target,candidates);
-        vector<vector<int>> ans(setAns.begin(), setAns.end()); 
         return ans;
     }
 
     void backTracking(int idx, int target, vector<int>& candidates) {
         // restore ans
         if (target==0) {
-            setAns.insert(partial);
+            ans.push_back(partial);
             return;
         }
         
@@ -24,8 +23,10 @@ public:
 
         // move 
         for (int i=idx; i<candidates.size(); i++) {
+            if(i>idx && candidates[i] == candidates[i-1]) // prevent duplicates
+                continue;
             partial.push_back(candidates[i]);
-            backTracking(++idx, target-candidates[i], candidates);
+            backTracking(i+1, target-candidates[i], candidates);
             partial.pop_back();
         }
 
