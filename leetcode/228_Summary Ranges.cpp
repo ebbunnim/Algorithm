@@ -1,3 +1,4 @@
+// Solution 1
 class Solution {
 public:
     vector<string> summaryRanges(vector<int>& nums) {
@@ -27,6 +28,25 @@ public:
             ans.push_back(to_string(currNum));
         else 
             ans.push_back(to_string(currNum)+"->"+to_string(nxtNum));
+        return ans;
+    }
+};
+
+// Solution 2
+class Solution {
+public:
+    vector<string> summaryRanges(vector<int>& nums) {
+        vector<string> ans;
+        for (int idx=0; idx<nums.size(); idx++) {
+            int pre = nums[idx];
+            while (idx+1<nums.size() && (nums[idx+1]==nums[idx]+1)) {
+                idx++;
+            }
+            if (pre==nums[idx])
+                ans.push_back(to_string(pre));
+            else 
+                ans.push_back(to_string(pre)+"->"+to_string(nums[idx]));
+        }
         return ans;
     }
 };
