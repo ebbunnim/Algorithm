@@ -26,3 +26,20 @@ public:
     }; 
 
 };
+
+// Solution2
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        int cnt[26] = {0};
+        for (int idx=0; idx<magazine.size(); idx++) {
+            cnt[magazine[idx]-'a']++;
+        }
+        for (int idx=0; idx<ransomNote.size(); idx++) {
+            if (--cnt[ransomNote[idx]-'a']<0) 
+                return false;
+        }
+        return true;
+    }
+
+};
