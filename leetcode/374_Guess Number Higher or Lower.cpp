@@ -18,7 +18,7 @@ public:
             int mid = s+(e-s)/2;
             int apiRet = guess(mid);
             if (apiRet==-1) {
-                e = mid; // NOTE. if (e = mid-1, s = mid) -> ((e-s)/2 < 0)
+                e = mid; // Q. e = mid-1, s = mid 가 되면 안되는 이유?
             } else if (apiRet==1) {
                 s = mid+1;
             } else {
