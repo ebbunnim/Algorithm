@@ -10,8 +10,6 @@
 class Solution {
 public:
     int guessNumber(int n) {
-        if (guess(n)==0) {return n;}
-
         int s=1;
         int e=n;
         while (s<e) {
