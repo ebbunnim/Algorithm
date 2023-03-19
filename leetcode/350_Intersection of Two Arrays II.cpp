@@ -4,6 +4,7 @@ public:
         int left=0;
         int right=0;
         vector<int> ans;
+        
         sort(nums1.begin(), nums1.end());
         sort(nums2.begin(), nums2.end());
         while (left<nums1.size() && right<nums2.size()) {
