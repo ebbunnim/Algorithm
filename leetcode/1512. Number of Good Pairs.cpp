@@ -6,7 +6,7 @@ public:
             for (int ridx=lidx+1; ridx<nums.size(); ridx++) {
                 if (nums[lidx]==nums[ridx]) {
                     ans++;
-                }
+                } 
             }
         }
         return ans;
